@@ -118,13 +118,11 @@ export const InstallPwaPrompt: React.FC = () => {
             {/* Top Bar with Icon.png */}
             <div className="flex items-center justify-between border-b border-zinc-800/80 pb-3">
               <div className="flex items-center gap-3">
-                <div className="relative h-13 w-13 rounded-2xl overflow-hidden bg-zinc-900 border border-cyan-500/50 p-1 shadow-[0_0_15px_rgba(0,240,255,0.4)] shrink-0">
-                  <Image
-                    src="/icon.png"
-                    alt="Digital Craftify App Icon"
-                    width={52}
-                    height={52}
-                    className="h-full w-full object-contain"
+                <div className="relative h-13 w-13 rounded-2xl overflow-hidden bg-zinc-900 border border-cyan-500/50 p-1 shadow-[0_0_15px_rgba(0,240,255,0.4)] shrink-0 flex items-center justify-center">
+                  <img
+                    src="/logo.png"
+                    alt="Digital Craftify Web App Logo"
+                    className="h-full w-full object-contain drop-shadow-[0_0_12px_rgba(0,240,255,0.7)]"
                   />
                 </div>
                 <div>
