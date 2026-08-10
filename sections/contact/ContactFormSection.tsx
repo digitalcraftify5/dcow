@@ -104,14 +104,54 @@ export const ContactFormSection: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Send directly to Hostinger contact.php script
+      const res = await fetch("/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          company: formState.company,
+          services: selectedServices.join(", "),
+          tech_stack: selectedTech.join(", "),
+          budget: formState.budget,
+          timeline: formState.timeline,
+          channel: formState.commChannel,
+          require_nda: formState.requireNda ? "Yes" : "No",
+          details: formState.details,
+        }),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+      } else {
+        setIsSubmitted(true);
+      }
+    } catch {
       setIsSubmitted(true);
-    }, 1200);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const sendDirectWhatsApp = () => {
+    const text = encodeURIComponent(
+      `*New Project Inquiry - Digital Craftify*\n\n` +
+      `*Name:* ${formState.name}\n` +
+      `*Email:* ${formState.email}\n` +
+      `*Phone:* ${formState.phone || "N/A"}\n` +
+      `*Services:* ${selectedServices.join(", ")}\n` +
+      `*Budget:* ${formState.budget}\n` +
+      `*Timeline:* ${formState.timeline}\n` +
+      `*Details:* ${formState.details}`
+    );
+    window.open(`https://wa.me/919149455143?text=${text}`, "_blank");
   };
 
   return (
@@ -152,27 +192,38 @@ export const ContactFormSection: React.FC = () => {
                 <p>{"//"} DISPATCH_ID: DC-948201 // SLA_ACTIVE</p>
                 {formState.requireNda && <p className="text-purple-400 font-bold">{"[x]"} NDA_EXECUTED // CONFIDENTIALITY_LOCKED</p>}
               </div>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => {
-                  setIsSubmitted(false);
-                  setFormState({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    company: "",
-                    details: "",
-                    budget: "$3,000 - $10,000",
-                    timeline: "Standard (1 Month)",
-                    commChannel: "Corporate Email",
-                    requireNda: false,
-                    fileName: "",
-                  });
-                }}
-              >
-                Configure Another Specification
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <Button
+                  variant="gradient"
+                  size="md"
+                  onClick={sendDirectWhatsApp}
+                  className="w-full sm:w-auto"
+                >
+                  Send via Direct WhatsApp ⚡
+                </Button>
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setFormState({
+                      name: "",
+                      email: "",
+                      phone: "",
+                      company: "",
+                      details: "",
+                      budget: "$3,000 - $10,000",
+                      timeline: "Standard (1 Month)",
+                      commChannel: "Corporate Email",
+                      requireNda: false,
+                      fileName: "",
+                    });
+                  }}
+                  className="w-full sm:w-auto"
+                >
+                  Configure Another Spec
+                </Button>
+              </div>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-10">

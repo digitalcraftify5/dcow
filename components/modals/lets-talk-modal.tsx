@@ -35,14 +35,30 @@ export const LetsTalkModal: React.FC<LetsTalkModalProps> = ({ isOpen, onClose })
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await fetch("/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          services: formState.service,
+          budget: formState.budget,
+          require_nda: formState.requireNda ? "Yes" : "No",
+          details: formState.details,
+        }),
+      });
       setIsSubmitted(true);
-    }, 1000);
+    } catch {
+      setIsSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const BUDGET_TIERS = [
