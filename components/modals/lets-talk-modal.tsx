@@ -39,6 +39,19 @@ export const LetsTalkModal: React.FC<LetsTalkModalProps> = ({ isOpen, onClose })
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Open WhatsApp simultaneously with inquiry details
+    const text = encodeURIComponent(
+      `*New Strategy Inquiry - Digital Craftify*\n\n` +
+      `*Name:* ${formState.name}\n` +
+      `*Email:* ${formState.email}\n` +
+      `*Phone:* ${formState.phone || "N/A"}\n` +
+      `*Service:* ${formState.service}\n` +
+      `*Budget:* ${formState.budget}\n` +
+      `*Require NDA:* ${formState.requireNda ? "Yes" : "No"}\n` +
+      `*Details:* ${formState.details}`
+    );
+    window.open(`https://wa.me/919149455143?text=${text}`, "_blank");
+
     try {
       await fetch("/contact.php", {
         method: "POST",

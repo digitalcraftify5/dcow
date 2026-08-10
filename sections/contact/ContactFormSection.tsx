@@ -108,9 +108,12 @@ export const ContactFormSection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // 1. Simultaneously trigger WhatsApp dispatch with all client details
+    sendDirectWhatsApp();
+
     try {
-      // Send directly to Hostinger contact.php script
-      const res = await fetch("/contact.php", {
+      // 2. Simultaneously send email to support@digitalcraftify.com via Hostinger contact.php
+      await fetch("/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -127,12 +130,7 @@ export const ContactFormSection: React.FC = () => {
           details: formState.details,
         }),
       });
-
-      if (res.ok) {
-        setIsSubmitted(true);
-      } else {
-        setIsSubmitted(true);
-      }
+      setIsSubmitted(true);
     } catch {
       setIsSubmitted(true);
     } finally {

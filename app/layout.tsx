@@ -5,6 +5,7 @@ import { Providers } from "@/components/providers";
 import { MainLayout } from "@/components/layout/main-layout";
 import { OrganizationJsonLd, LocalBusinessJsonLd, WebSiteJsonLd, ServicesCatalogJsonLd, PersonJsonLd } from "@/components/seo/json-ld";
 import { InstallPwaPrompt } from "@/components/ui/install-pwa-prompt";
+import { WhatsAppFloatingChat } from "@/components/ui/whatsapp-floating-chat";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Providers>
           <MainLayout>{children}</MainLayout>
           <InstallPwaPrompt />
+          <WhatsAppFloatingChat />
         </Providers>
       </body>
     </html>
