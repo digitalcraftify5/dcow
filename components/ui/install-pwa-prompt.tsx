@@ -120,7 +120,7 @@ export const InstallPwaPrompt: React.FC = () => {
               <div className="flex items-center gap-3">
                 <div className="relative h-13 w-13 rounded-2xl overflow-hidden bg-zinc-900 border border-cyan-500/50 p-1 shadow-[0_0_15px_rgba(0,240,255,0.4)] shrink-0 flex items-center justify-center">
                   <img
-                    src="/icon.png"
+                    src="/logo.png"
                     alt="Digital Craftify Web App Icon"
                     className="h-full w-full object-contain drop-shadow-[0_0_12px_rgba(0,240,255,0.7)]"
                   />
