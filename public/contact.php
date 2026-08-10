@@ -33,23 +33,27 @@ if (empty($name) || empty($email) || empty($details)) {
 }
 
 $to = "support@digitalcraftify.com";
-$subject = "🚀 New Enterprise Project Inquiry: " . $name . " (" . $company . ")";
+$subject = "New Inquiry: " . $name . " (" . $company . ") - Digital Craftify";
+
+$domain = "digitalcraftify.com";
+$msgId = "<" . md5(uniqid(microtime(true), true)) . "@" . $domain . ">";
 
 $body = "
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
+<meta charset='UTF-8'>
 <style>
   body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #09090b; color: #f4f4f5; margin: 0; padding: 20px; }
   .container { max-width: 600px; margin: 0 auto; background: #18181b; border: 1px solid #00f0ff; border-radius: 16px; padding: 30px; }
-  .header { border-b: 1px solid #27272a; padding-bottom: 15px; margin-bottom: 20px; }
+  .header { border-bottom: 1px solid #27272a; padding-bottom: 15px; margin-bottom: 20px; }
   .title { font-size: 22px; font-weight: bold; color: #00f0ff; margin: 0; }
-  .subtitle { font-size: 12px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; }
+  .subtitle { font-size: 11px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; }
   .field-group { margin-bottom: 15px; }
   .label { font-size: 11px; font-weight: bold; color: #00f0ff; text-transform: uppercase; margin-bottom: 4px; }
   .value { font-size: 14px; color: #ffffff; background: #09090b; border: 1px solid #27272a; padding: 10px 14px; border-radius: 8px; }
   .badge { display: inline-block; padding: 4px 10px; background: #10b98120; border: 1px solid #10b981; color: #10b981; border-radius: 6px; font-size: 12px; font-weight: bold; }
-  .footer { margin-top: 25px; border-t: 1px solid #27272a; pt: 15px; font-size: 11px; color: #71717a; text-align: center; }
+  .footer { margin-top: 25px; border-top: 1px solid #27272a; padding-top: 15px; font-size: 11px; color: #71717a; text-align: center; }
 </style>
 </head>
 <body>
@@ -107,18 +111,25 @@ $body = "
 </html>
 ";
 
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: Digital Craftify Dispatch <no-reply@digitalcraftify.com>" . "\r\n";
-$headers .= "Reply-To: " . $name . " <" . $email . ">" . "\r\n";
+$headers = array();
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-type: text/html; charset=UTF-8";
+$headers[] = "From: Digital Craftify <support@digitalcraftify.com>";
+$headers[] = "Reply-To: " . $name . " <" . $email . ">";
+$headers[] = "Return-Path: support@digitalcraftify.com";
+$headers[] = "Message-ID: " . $msgId;
+$headers[] = "X-Mailer: PHP/" . phpversion();
+$headers[] = "X-Priority: 1";
+$headers[] = "Organization: Digital Craftify Ltd.";
 
-if (@mail($to, $subject, $body, $headers)) {
+$headersString = implode("\r\n", $headers);
+
+if (@mail($to, $subject, $body, $headersString, "-f support@digitalcraftify.com")) {
     echo json_encode(["success" => true, "message" => "Strategy dispatch transmitted successfully!"]);
 } else {
-    // Fallback attempt with basic mail headers
-    $simpleHeaders = "From: no-reply@digitalcraftify.com\r\nReply-To: " . $email;
-    if (@mail($to, $subject, strip_tags($body), $simpleHeaders)) {
-        echo json_encode(["success" => true, "message" => "Strategy dispatch sent via plain mail fallback!"]);
+    // Fallback attempt
+    if (@mail($to, $subject, $body, $headersString)) {
+        echo json_encode(["success" => true, "message" => "Strategy dispatch sent via fallback!"]);
     } else {
         http_response_code(500);
         echo json_encode(["success" => false, "message" => "Hostinger mailer error. Please try WhatsApp dispatch."]);
