@@ -20,9 +20,9 @@ export default function Loading() {
 
         {/* Brand Name */}
         <div className="flex flex-col items-center gap-3">
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
             Digital<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Craftify</span>
-          </h1>
+          </h2>
           <p className="text-xs sm:text-sm text-zinc-500 tracking-widest uppercase font-medium">
             Crafting Digital Excellence
           </p>

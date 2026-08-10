@@ -55,19 +55,21 @@ export function constructMetadata({
   type = "website",
 }: ConstructMetadataOptions = {}): Metadata {
   const fullTitle = title === SITE_CONFIG.name 
-    ? `${SITE_CONFIG.name} | Premium Web Development & Digital Design Agency` 
+    ? `${SITE_CONFIG.name} | Premier Web & Mobile App Agency` 
     : `${title} | ${SITE_CONFIG.name}`;
     
-  const targetUrl = canonicalUrl ? `${SITE_CONFIG.url}${canonicalUrl}` : SITE_CONFIG.url;
+  // Absolute production canonical URL to eliminate localhost/different domain errors
+  const canonicalBase = "https://www.digitalcraftify.com";
+  const targetUrl = canonicalUrl ? `${canonicalBase}${canonicalUrl}` : canonicalBase;
 
   return {
     title: fullTitle,
     description,
     keywords,
-    authors: [{ name: SITE_CONFIG.legalName, url: SITE_CONFIG.url }],
+    authors: [{ name: SITE_CONFIG.legalName, url: canonicalBase }],
     creator: SITE_CONFIG.name,
     publisher: SITE_CONFIG.legalName,
-    metadataBase: new URL(SITE_CONFIG.url),
+    metadataBase: new URL(canonicalBase),
     category: "technology",
     formatDetection: {
       email: false,
@@ -92,7 +94,7 @@ export function constructMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: `${SITE_CONFIG.name} — Premium Web & App Agency`,
+          alt: `${SITE_CONFIG.name} — Premier Web & App Agency`,
         },
       ],
       type,

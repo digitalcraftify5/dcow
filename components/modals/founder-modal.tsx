@@ -325,9 +325,9 @@ END:VCARD`;
                 </div>
 
                 <div className="space-y-2">
-                  <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
+                  <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">
                     Tanveer <span className="text-gradient-teal-cyan">Hussain</span>
-                  </h1>
+                  </h2>
                   <p className="text-base sm:text-lg font-mono font-bold text-cyan-400 flex items-center gap-2">
                     Founder &amp; CEO | Digital Craftify <span className="text-zinc-500">&gt;</span>
                   </p>

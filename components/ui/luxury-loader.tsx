@@ -111,9 +111,9 @@ export const LuxuryLoader: React.FC = () => {
 
           {/* Brand Name & Tagline */}
           <div className="space-y-2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
               Digital<span className="text-gradient-teal-cyan">Craftify</span>
-            </h1>
+            </h2>
             <p className="text-xs sm:text-sm font-mono tracking-widest text-cyan-400 font-extrabold uppercase">
               Architecting Digital Excellence
             </p>

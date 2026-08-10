@@ -24,9 +24,7 @@ export const HeroContent: React.FC = () => {
         transition={{ duration: 0.7, delay: 0.1 }}
         className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08]"
       >
-        Craft <span className="text-gradient-teal-cyan">Digital.</span>
-        <br />
-        Deliver <span className="text-gradient-blue-purple">Excellence.</span>
+        Craft <span className="text-gradient-teal-cyan">Digital Web & App</span> Solutions. Deliver <span className="text-gradient-blue-purple">Excellence.</span>
       </motion.h1>
 
       {/* Line 3: Cyber Capsule Description */}
