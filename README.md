@@ -127,7 +127,6 @@ The optimized production export will be generated in the `out/` directory, ready
 
 - **Founder & CEO**: Tanveer Hussain
 - **Agency Name**: Digital Craftify Ltd.
-- **Address**: Al Mehdi Colony, Yayil Rawalpora, Srinagar, Jammu & Kashmir, 190005, India
 - **Phone / WhatsApp / BOTIM**: `+91 91494 55143`
 - **Email**: `support@digitalcraftify.com`
 - **Website**: [www.digitalcraftify.com](https://www.digitalcraftify.com)
