@@ -20,6 +20,27 @@
 
 ---
 
+## 📸 Website UI & Executive Screenshots
+
+<div align="center">
+  <h3>⚡ Enterprise Landing Page & High-Tech Hero</h3>
+  <img src="public/images/screenshots/hero-section.png" alt="Digital Craftify Hero Section" width="900" />
+  <br/><br/>
+
+  <h3>👔 Founder Spotlight — Tanveer Hussain (Founder & CEO)</h3>
+  <img src="public/images/screenshots/founder-spotlight.png" alt="Founder Spotlight" width="900" />
+  <br/><br/>
+
+  <h3>🛠️ Core Engineering & Digital Services Suite</h3>
+  <img src="public/images/screenshots/services-catalog.png" alt="Digital Services Catalog" width="900" />
+  <br/><br/>
+
+  <h3>✉️ Dual-Dispatch Strategy Engine & Contact Center</h3>
+  <img src="public/images/screenshots/contact-dispatch.png" alt="Contact Strategy Engine" width="900" />
+</div>
+
+---
+
 ## ✨ Key Features & Architecture
 
 - **⚡ Next.js 15 & React 19 App Router**: Ultra-fast SSG static prerendering (`39/39 routes`) with seamless client-side page transitions.
